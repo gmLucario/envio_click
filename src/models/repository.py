@@ -9,7 +9,10 @@ import motor.motor_asyncio
 load_dotenv()
 
 
-def _make_url(db_config: dict):
+def _make_url(db_config: dict) -> str:
+    """
+    Return the url connection
+    """
     url = db_config.get("type")
     url += f'://{db_config.get("user")}'
     url += f':{db_config.get("password")}'
@@ -41,18 +44,30 @@ class ApiRepository:
         self._db = client[os.getenv("DB_NAME")]
 
     def set_collection(self, collection: str, index_fields: tuple = ()) -> None:
+        """
+        Set collection that will be affected and its indexes
+        """
         self._collection = self._db[collection]
         self._collection.create_index(
             [(index, ASCENDING) for index in index_fields], unique=True
         )
 
     def find_one(self, filters: dict) -> bool:
+        """
+        Search a document based on filters
+        """
         return self._collection.find_one(filters)
 
-    def update_or_insert(self, obj_to_save: BaseModel, filters: dict):
+    def update_or_insert(self, obj_to_save: BaseModel, filters: dict) -> dict:
+        """
+        Update or insert (if not exist) a document based on filters
+        """
         return self._collection.find_one_and_update(
             filters, {"$set": obj_to_save.dict()}, upsert=True, return_document=True
         )
 
-    def insert_many_trucks(self, list_objs: List[BaseModel]):
+    def insert_many(self, list_objs: List[BaseModel]):
+        """
+        Insert many documents
+        """
         return self._collection.insert_many([o.dict() for o in list_objs])

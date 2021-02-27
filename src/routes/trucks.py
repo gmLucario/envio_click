@@ -28,5 +28,5 @@ async def add_trucks(trucks: List[TruckSchema], response: Response):
             data=None, message="All the trucks have been inserted previously", code=400
         )
 
-    await repo.insert_many_trucks(trucks_to_save)
+    await repo.insert_many(trucks_to_save)
     return GeneralListResponse(data=trucks_to_save, message="success", code=200)
