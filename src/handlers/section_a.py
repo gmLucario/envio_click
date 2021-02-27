@@ -1,7 +1,7 @@
 from models.response import VowelSummary
 
 
-def get_vowels_summary(line: str) -> dict:
+def get_vowels_summary(line: str) -> VowelSummary:
     """
     Return the amount of vowels and a new line with vowels changed
     """
