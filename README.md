@@ -70,6 +70,13 @@ pytest
 - C2:
     1. Flake8 arrojó de líneas muy largas. Por el nombre de las variables no podría reducirse mucho.
     En ocasiones es mejor tener variables largas pero entendibles
+    2. Se usó [wily](https://wily.readthedocs.io/en/latest/?badge=latest#) para el análisis de complejidad:
+
+        2.1 Cyclomatic Complexity: 4-7 en promedio
+
+        2.2 Maintainability Index: 67 en promedio
+
+    El princiopal cambio que buscaría sería reducir el número de loops, de momento
 
 
 ## Principales herramientas
@@ -83,5 +90,5 @@ pytest
 
 ## Requirements
 ```sh
-assets
+assets/requirements.txt
 ```

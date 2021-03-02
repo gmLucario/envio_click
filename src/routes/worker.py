@@ -19,7 +19,7 @@ repo = ApiRepository()
     response_description="Insert new worker",
     status_code=200,
 )
-async def add_workers(worker: WorkerSchema, response: Response):
+async def add_worker(worker: WorkerSchema, response: Response):
     repo.set_collection("trucks", index_fields=("motor_serial",))
     worker.assigned_trucks = [
         ms for ms in worker.assigned_trucks if await repo.find_one({"motor_serial": ms})
