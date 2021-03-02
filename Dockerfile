@@ -13,7 +13,7 @@ RUN apt-get update \
 
 
 FROM artifact
-COPY assets/ /
+COPY assets/requirements.txt /
 RUN pip install -r requirements.txt --no-cache-dir
 COPY src/ /src
 RUN chown -R 1000:1000 /src
